@@ -1,1104 +1,1237 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yoan Garcia — Software Engineer</title>
-  <meta name="description" content="Portfolio of Yoan Garcia, a software engineer focused on solving real problems with thoughtful, scalable digital products." />
-  <style>
-    :root {
-      --bg: #0b0b0c;
-      --bg-soft: #111214;
-      --panel: rgba(255, 255, 255, 0.04);
-      --panel-strong: rgba(255, 255, 255, 0.07);
-      --text: #f5f5f2;
-      --muted: #a4a7ad;
-      --line: rgba(255, 255, 255, 0.1);
-      --accent: #9be7c4;
-      --accent-soft: rgba(155, 231, 196, 0.14);
-      --accent-2: #d9d4ff;
-      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
-      --radius-xl: 32px;
-      --radius-lg: 24px;
-      --radius-md: 18px;
-      --container: 1180px;
-      --ease: 240ms cubic-bezier(.2,.8,.2,1);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(155, 231, 196, 0.08), transparent 28%),
-        radial-gradient(circle at 85% 15%, rgba(217, 212, 255, 0.08), transparent 24%),
-        linear-gradient(180deg, #090909 0%, #0d0e10 100%);
-      color: var(--text);
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button {
-      font: inherit;
-    }
-
-    .shell {
-      width: min(calc(100% - 2rem), var(--container));
-      margin: 0 auto;
-    }
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(14px);
-      background: rgba(11, 11, 12, 0.68);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.25rem;
-      min-height: 76px;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-    }
-
-    .brand-mark {
-      width: 2.5rem;
-      height: 2.5rem;
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background:
-        linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02)),
-        linear-gradient(145deg, rgba(155, 231, 196, 0.15), rgba(217, 212, 255, 0.08));
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
-      font-size: 0.9rem;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-      flex-wrap: wrap;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      font-size: 0.95rem;
-      padding: 0.8rem 1rem;
-      border-radius: 999px;
-      transition: color var(--ease), background var(--ease), transform var(--ease);
-    }
-
-    .nav-links a:hover,
-    .nav-links a:focus-visible {
-      color: var(--text);
-      background: rgba(255, 255, 255, 0.05);
-      outline: none;
-      transform: translateY(-1px);
-    }
-
-    main {
-      overflow: clip;
-    }
-
-    section {
-      padding: 5rem 0;
-    }
-
-    .hero {
-      padding: 5.5rem 0 3.5rem;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
-      gap: 2rem;
-      align-items: end;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.65rem;
-      padding: 0.55rem 0.9rem;
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 999px;
-      color: var(--muted);
-      background: rgba(255,255,255,0.03);
-      font-size: 0.82rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 0.55rem;
-      height: 0.55rem;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 0 6px rgba(155, 231, 196, 0.12);
-    }
-
-    h1,
-    h2,
-    h3,
-    p {
-      margin-top: 0;
-    }
-
-    .hero h1 {
-      margin: 1.4rem 0 1rem;
-      font-size: clamp(3rem, 8vw, 6.4rem);
-      line-height: 0.95;
-      letter-spacing: -0.05em;
-      font-weight: 700;
-      max-width: 10ch;
-    }
-
-    .hero .lead {
-      max-width: 62ch;
-      font-size: clamp(1.05rem, 1.35vw, 1.22rem);
-      color: #d6d9df;
-      line-height: 1.75;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.9rem;
-      margin-top: 2rem;
-    }
-
-    .button,
-    .button-secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.7rem;
-      min-height: 3.4rem;
-      padding: 0 1.2rem;
-      border-radius: 999px;
-      transition: transform var(--ease), background var(--ease), border-color var(--ease), color var(--ease);
-      border: 1px solid transparent;
-      white-space: nowrap;
-    }
-
-    .button {
-      background: var(--text);
-      color: #0d0e10;
-      font-weight: 600;
-    }
-
-    .button:hover,
-    .button:focus-visible {
-      transform: translateY(-2px);
-      outline: none;
-    }
-
-    .button-secondary {
-      border-color: rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.03);
-      color: var(--text);
-    }
-
-    .button-secondary:hover,
-    .button-secondary:focus-visible {
-      background: rgba(255,255,255,0.07);
-      transform: translateY(-2px);
-      outline: none;
-    }
-
-    .hero-panel {
-      position: relative;
-      min-height: 100%;
-      padding: 1.6rem;
-      border-radius: var(--radius-xl);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: var(--shadow);
-      isolation: isolate;
-    }
-
-    .hero-panel::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 20% 18%, rgba(155,231,196,0.15), transparent 30%),
-        radial-gradient(circle at 82% 80%, rgba(217,212,255,0.12), transparent 28%);
-      border-radius: inherit;
-      z-index: -1;
-    }
-
-    .panel-grid {
-      display: grid;
-      gap: 1rem;
-    }
-
-    .panel-item {
-      padding: 1.1rem 1.15rem;
-      border-radius: 20px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(8, 8, 9, 0.45);
-    }
-
-    .panel-label {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      margin-bottom: 0.5rem;
-    }
-
-    .panel-value {
-      font-size: 1.05rem;
-      line-height: 1.5;
-      color: #f0f1f4;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-
-    .stat {
-      padding: 1rem;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 1.5rem;
-      letter-spacing: -0.04em;
-      margin-bottom: 0.25rem;
-    }
-
-    .stat span {
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    .section-heading {
-      display: grid;
-      gap: 0.8rem;
-      margin-bottom: 2.2rem;
-      max-width: 54rem;
-    }
-
-    .section-heading .kicker {
-      color: var(--accent);
-      font-size: 0.88rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
-
-    .section-heading h2 {
-      font-size: clamp(2rem, 3vw, 3.4rem);
-      line-height: 1;
-      letter-spacing: -0.04em;
-      margin-bottom: 0;
-    }
-
-    .section-heading p {
-      color: var(--muted);
-      font-size: 1.02rem;
-      max-width: 58ch;
-      line-height: 1.8;
-      margin-bottom: 0;
-    }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 1rem;
-    }
-
-    .project {
-      position: relative;
-      overflow: hidden;
-      min-height: 320px;
-      border-radius: 28px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-      transition: transform var(--ease), border-color var(--ease), background var(--ease);
-      isolation: isolate;
-    }
-
-    .project:hover,
-    .project:focus-within {
-      transform: translateY(-6px);
-      border-color: rgba(255,255,255,0.16);
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.025));
-    }
-
-    .project::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      opacity: 0.95;
-      z-index: -1;
-    }
-
-    .project--wide::before {
-      background:
-        radial-gradient(circle at 18% 18%, rgba(155, 231, 196, 0.16), transparent 22%),
-        linear-gradient(135deg, rgba(255,255,255,0.04), transparent 55%),
-        repeating-linear-gradient(90deg, transparent 0 24px, rgba(255,255,255,0.03) 24px 25px);
-    }
-
-    .project--tall::before {
-      background:
-        radial-gradient(circle at 78% 18%, rgba(217, 212, 255, 0.16), transparent 26%),
-        linear-gradient(180deg, rgba(255,255,255,0.04), transparent 55%),
-        repeating-linear-gradient(180deg, transparent 0 22px, rgba(255,255,255,0.028) 22px 23px);
-    }
-
-    .project--accent::before {
-      background:
-        linear-gradient(145deg, rgba(155,231,196,0.12), transparent 32%),
-        radial-gradient(circle at 80% 85%, rgba(255,255,255,0.08), transparent 26%),
-        linear-gradient(180deg, rgba(255,255,255,0.04), transparent 60%);
-    }
-
-    .project--dark::before {
-      background:
-        radial-gradient(circle at 50% 50%, rgba(255,255,255,0.06), transparent 35%),
-        linear-gradient(135deg, rgba(217,212,255,0.11), transparent 35%),
-        linear-gradient(315deg, rgba(155,231,196,0.08), transparent 28%);
-    }
-
-    .span-7 { grid-column: span 7; }
-    .span-5 { grid-column: span 5; }
-    .span-4 { grid-column: span 4; }
-    .span-8 { grid-column: span 8; }
-
-    .project-inner {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 1.25rem;
-      padding: 1.4rem;
-    }
-
-    .project-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-
-    .project-tag {
-      display: inline-flex;
-      align-items: center;
-      min-height: 2rem;
-      padding: 0.35rem 0.7rem;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: #eceef3;
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .project-index {
-      color: rgba(255,255,255,0.35);
-      font-size: 0.95rem;
-      letter-spacing: 0.08em;
-    }
-
-    .project h3 {
-      font-size: clamp(1.4rem, 2vw, 2rem);
-      line-height: 1.05;
-      letter-spacing: -0.035em;
-      margin-bottom: 0.8rem;
-      max-width: 13ch;
-    }
-
-    .project p {
-      color: #d2d6dd;
-      max-width: 50ch;
-      line-height: 1.75;
-      margin-bottom: 0;
-    }
-
-    /* Technology stack chips */
-    .stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1rem;
-    }
-
-    .stack-item {
-    font-size: 0.78rem;
-    padding: 0.4rem 0.65rem;
-    border-radius: 999px;
-    background: rgba(155,231,196,0.08);
-    border: 1px solid rgba(155,231,196,0.18);
-    color: #e9fff6;
-    letter-spacing: 0.03em;
-    }
-
-    .stack-item.alt {
-    background: rgba(217,212,255,0.08);
-    border-color: rgba(217,212,255,0.18);
-    color: #f0edff;
-    }
-
-    .project-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-      padding-top: 1.25rem;
-      border-top: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .project-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-    }
-
-    .project-meta span {
-      padding: 0.45rem 0.7rem;
-      border-radius: 999px;
-      font-size: 0.82rem;
-      color: var(--muted);
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .project-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      color: var(--text);
-      font-weight: 600;
-    }
-
-    .project-link svg,
-    .social-link svg {
-      transition: transform var(--ease);
-    }
-
-    .project:hover .project-link svg,
-    .social-link:hover svg {
-      transform: translate(3px, -3px);
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
-      gap: 1rem;
-    }
-
-    .about-card,
-    .contact-card {
-      padding: 1.6rem;
-      border-radius: 28px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.025));
-      box-shadow: var(--shadow);
-    }
-
-    .about-card p {
-      color: #d3d7de;
-      line-height: 1.9;
-      font-size: 1.02rem;
-    }
-
-    .about-points {
-      display: grid;
-      gap: 0.9rem;
-    }
-
-    .about-point {
-      padding: 1rem 1.05rem;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .about-point strong {
-      display: block;
-      font-size: 1rem;
-      margin-bottom: 0.4rem;
-    }
-
-    .about-point span {
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: 0.95rem;
-    }
-
-    .contact-card {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .contact-card::before {
-      content: "";
-      position: absolute;
-      inset: auto -4rem -4rem auto;
-      width: 14rem;
-      height: 14rem;
-      background: radial-gradient(circle, rgba(155,231,196,0.16), transparent 60%);
-      pointer-events: none;
-    }
-
-    .socials {
-      display: grid;
-      gap: 0.9rem;
-      margin-top: 1.6rem;
-    }
-
-    .social-link {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: 1rem 1.1rem;
-      border-radius: 20px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.03);
-      transition: transform var(--ease), background var(--ease), border-color var(--ease);
-    }
-
-    .social-link:hover,
-    .social-link:focus-visible {
-      transform: translateY(-3px);
-      background: rgba(255,255,255,0.055);
-      border-color: rgba(255,255,255,0.15);
-      outline: none;
-    }
-
-    .social-main {
-      display: flex;
-      align-items: center;
-      gap: 0.9rem;
-    }
-
-    .social-icon {
-      width: 2.75rem;
-      height: 2.75rem;
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: var(--text);
-      flex-shrink: 0;
-    }
-
-    .social-copy strong {
-      display: block;
-      font-size: 1rem;
-      margin-bottom: 0.2rem;
-    }
-
-    .social-copy span {
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .site-footer {
-      padding: 2rem 0 3.2rem;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .footer-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding-top: 1.2rem;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      flex-wrap: wrap;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 700ms ease, transform 700ms ease;
-      will-change: transform, opacity;
-    }
-
-    .reveal.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *, *::before, *::after {
-        animation: none !important;
-        transition: none !important;
-      }
-
-      .reveal {
-        opacity: 1;
-        transform: none;
-      }
-    }
-
-    @media (max-width: 1024px) {
-      .hero-grid,
-      .about-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .span-7,
-      .span-5,
-      .span-4,
-      .span-8 {
-        grid-column: span 12;
-      }
-    }
-
-    @media (max-width: 720px) {
-      .nav {
-        min-height: auto;
-        padding: 0.95rem 0;
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .nav-links {
-        width: 100%;
-      }
-
-      .nav-links a {
-        padding-inline: 0.8rem;
-      }
-
-      .hero {
-        padding-top: 3.8rem;
-      }
-
-      section {
-        padding: 4rem 0;
-      }
-
-      .hero h1 {
-        max-width: none;
-      }
-
-      .hero-actions,
-      .project-footer,
-      .footer-row {
-        align-items: stretch;
-      }
-
-      .button,
-      .button-secondary {
-        width: 100%;
-      }
-
-      .stats {
-        grid-template-columns: 1fr;
-      }
-
-      .project {
-        min-height: 280px;
-      }
-
-      .project h3 {
-        max-width: none;
-      }
-    }
-  </style>
-</head>
-<body>
-  <header class="site-header">
-    <div class="shell nav">
-      <a href="#top" class="brand" aria-label="Yoan Garcia home">
-        <span class="brand-mark">YG</span>
-        <span>Yoan Garcia</span>
-      </a>
-
-      <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#projects">Projects</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <main id="top">
-    <section class="hero">
-      <div class="shell hero-grid">
-        <div class="reveal is-visible">
-          <span class="eyebrow">Experienced software engineer</span>
-          <h1>Yoan Garcia</h1>
-          <p class="lead">
-            I design and build software that solves real business problems with clarity, structure,
-            and long-term thinking. I am not defined by a single language or framework — I focus on
-            understanding the problem deeply, then delivering the right solution with precision.
-          </p>
-
-          <div class="hero-actions">
-            <a class="button" href="#projects">View selected work</a>
-            <a class="button-secondary" href="#contact">Connect with me</a>
-          </div>
-        </div>
-
-        <aside class="hero-panel reveal" aria-label="Professional summary">
-          <div class="panel-grid">
-            <div class="panel-item">
-              <div class="panel-label">Approach</div>
-              <div class="panel-value">Systems thinking, product awareness, and practical engineering that moves work forward.</div>
-            </div>
-
-            <div class="panel-item">
-              <div class="panel-label">Strength</div>
-              <div class="panel-value">Turning ambiguity into clean architecture, reliable delivery, and polished user experiences.</div>
-            </div>
-          </div>
-
-          <div class="stats" aria-label="Key highlights">
-            <div class="stat">
-              <strong>End-to-end</strong>
-              <span>From concept to production</span>
-            </div>
-            <div class="stat">
-              <strong>Problem-first</strong>
-              <span>Solutions over labels</span>
-            </div>
-            <div class="stat">
-              <strong>Minimal</strong>
-              <span>Clean and intentional design</span>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section id="projects">
-      <div class="shell">
-        <div class="section-heading reveal">
-          <span class="kicker">Selected projects</span>
-          <h2>Work shaped by outcomes, not just implementation.</h2>
-          <p>
-            Each project below is framed around a different kind of challenge: workflow design,
-            user experience, operational clarity, and scalable systems thinking.
-          </p>
-        </div>
-
-        <div class="projects-grid">
-          <article class="project project--wide span-7 reveal">
-            <div class="project-inner">
-              <div>
-                <div class="project-top">
-                  <span class="project-tag">Platform design</span>
-                  <span class="project-index">01</span>
-                </div>
-                <h3>Appointment platform built for real-world operations</h3>
-                <p>
-                  A business-focused booking experience designed to reduce friction for customers while giving owners better control over services, availability, and day-to-day management.
-                </p>
-                <div class="stack">
-                    <span class="stack-item">.NET Core API</span>
-                    <span class="stack-item alt">Angular UI</span>
-                    <span class="stack-item">PostgreSQL</span>
-                    <span class="stack-item alt">Azure DevOps CI/CD</span>
-                    <span class="stack-item">Linux VPS</span>
-                    <span class="stack-item alt">Twilio API</span>
-                </div>
-              </div>
-              <div class="project-footer">
-                <div class="project-meta" aria-label="Project qualities">
-                  <span>Operational UX</span>
-                  <span>RCS-SMS notifications</span>
-                  <span>Business workflow</span>
-                </div>
-                <a href="https://berryeze.com/landing" target="_blank" class="project-link">
-                  See it live
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project project--tall span-5 reveal">
-            <div class="project-inner">
-              <div>
-                <div class="project-top">
-                  <span class="project-tag">Frontend refinement</span>
-                  <span class="project-index">02</span>
-                </div>
-                <h3>Veteran-owned HVAC website built for trust and conversion</h3>
-                <p>
-                  A service-focused website for a veteran-owned HVAC company designed to turn urgent home comfort problems into clear next steps. The experience emphasizes credibility, fast booking, financing visibility, and a straightforward presentation of services such as AC repair, maintenance, installation, air duct cleaning, indoor air quality testing, and UV light installation.
-                </p>
-              </div>
-              <div class="project-footer">
-                <div class="project-meta">
-                  <span>Responsive UI</span>
-                  <span>Micro-interactions</span>
-                </div>
-                <a href="#contact" class="project-link">
-                  See it live
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project project--accent span-4 reveal">
-            <div class="project-inner">
-              <div>
-                <div class="project-top">
-                  <span class="project-tag">Integration</span>
-                  <span class="project-index">03</span>
-                </div>
-                <h3>Communication flows connected to product logic</h3>
-                <p>
-                  Messaging, notifications, and external services integrated in a way that supports the user journey instead of feeling bolted on afterward.
-                </p>
-              </div>
-              <div class="project-footer">
-                <div class="project-meta">
-                  <span>External services</span>
-                  <span>Reliable flows</span>
-                </div>
-                <a href="#contact" class="project-link">
-                  Explore the details
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project project--dark span-8 reveal">
-            <div class="project-inner">
-              <div>
-                <div class="project-top">
-                  <span class="project-tag">Architecture</span>
-                  <span class="project-index">04</span>
-                </div>
-                <h3>Backend structure designed for maintainability and growth</h3>
-                <p>
-                  Clear service boundaries, secure access patterns, and data models designed to stay understandable as the product evolves and requirements become more complex.
-                </p>
-              </div>
-              <div class="project-footer">
-                <div class="project-meta">
-                  <span>Clean boundaries</span>
-                  <span>Secure by design</span>
-                  <span>Future-ready</span>
-                </div>
-                <a href="#contact" class="project-link">
-                  Talk through your project
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="shell">
-        <div class="section-heading reveal">
-          <span class="kicker">About</span>
-          <h2>Engineering with perspective, not just execution.</h2>
-        </div>
-
-        <div class="about-grid">
-          <article class="about-card reveal">
-            <p>
-              I approach software engineering as a discipline of solving problems well. That means
-              understanding business goals, noticing friction points, designing systems that make sense,
-              and delivering work that feels intentional from the inside out.
-            </p>
-            <p>
-              I do not define my work by a fixed stack. Different problems call for different tools,
-              and good engineering is often about choosing wisely, simplifying aggressively, and building
-              with enough structure that the solution remains useful long after launch.
-            </p>
-            <p>
-              My preference is for products that feel clear, reliable, and quietly sophisticated — the
-              kind of software that earns trust because it works the way people need it to.
-            </p>
-          </article>
-
-          <aside class="about-points reveal" aria-label="Working style highlights">
-            <div class="about-point">
-              <strong>Problem framing</strong>
-              <span>I like to find the real issue underneath the visible one before touching implementation.</span>
-            </div>
-            <div class="about-point">
-              <strong>Structured delivery</strong>
-              <span>Thoughtful systems, maintainable code, and interfaces that support the product instead of distracting from it.</span>
-            </div>
-            <div class="about-point">
-              <strong>Professional polish</strong>
-              <span>The final details matter — naming, flow, responsiveness, consistency, and the overall feel of the product.</span>
-            </div>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="shell">
-        <div class="section-heading reveal">
-          <span class="kicker">Contact</span>
-          <h2>Let’s connect where conversation is simplest.</h2>
-          <p>
-            No contact form. Just direct channels.
-          </p>
-        </div>
-
-        <div class="contact-card reveal">
-          <div class="socials">
-            <a class="social-link" href="https://www.linkedin.com/in/yohanjs" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn">
-              <span class="social-main">
-                <span class="social-icon" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <path d="M7 9V17M7 7V7.01M11 17V12.5C11 10.567 12.567 9 14.5 9C16.433 9 18 10.567 18 12.5V17M3 5.5C3 4.11929 4.11929 3 5.5 3H18.5C19.8807 3 21 4.11929 21 5.5V18.5C21 19.8807 19.8807 21 18.5 21H5.5C4.11929 21 3 19.8807 3 18.5V5.5Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-                <span class="social-copy">
-                  <strong>LinkedIn</strong>
-                  <span>Professional network and conversations</span>
-                </span>
-              </span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-
-            <a class="social-link" href="https://github.com/yohanJS/yohanJS" target="_blank" rel="noreferrer noopener" aria-label="GitHub">
-              <span class="social-main">
-                <span class="social-icon" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <path d="M9 18C4 19.5 4 15.5 2 15M16 21V17.13C16.0375 16.6532 15.9731 16.1738 15.811 15.723C15.6489 15.2722 15.3929 14.8602 15.06 14.514C18.2 14.164 21.5 12.974 21.5 7.514C21.4997 6.11728 20.9627 4.77406 20 3.764C20.4559 2.54297 20.4236 1.19374 19.91 0C19.91 0 18.73 -0.35 16 1.474C13.708 0.853846 11.292 0.853846 9 1.474C6.27 -0.35 5.09 0 5.09 0C4.57638 1.19374 4.54414 2.54297 5 3.764C4.03013 4.78155 3.49252 6.13748 3.5 7.544C3.5 12.964 6.8 14.154 9.94 14.544C9.611 14.8864 9.35726 15.2928 9.19425 15.7386C9.03124 16.1844 8.96257 16.6594 8.992 17.133V21" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-                <span class="social-copy">
-                  <strong>GitHub</strong>
-                  <span>Code, experiments, and implementation detail</span>
-                </span>
-              </span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-
-            <a class="social-link" href="https://wa.me/17863433134" target="_blank" rel="noreferrer noopener" aria-label="WhatsApp">
-              <span class="social-main">
-                <span class="social-icon" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <path d="M20 11.5C20 16.1944 16.1944 20 11.5 20C10.0493 20 8.68343 19.6363 7.48987 18.9955L3.5 20L4.56602 16.1847C3.88256 14.9597 3.5 13.5477 3.5 12.0469C3.5 7.35248 7.30558 3.54691 12 3.54691C16.6944 3.54691 20.5 7.35248 20.5 12.0469" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M9.16368 8.83984C8.94146 8.34572 8.70776 8.33583 8.4963 8.32718C8.32344 8.32012 8.12545 8.32067 7.92747 8.32067C7.72949 8.32067 7.40791 8.39519 7.13584 8.6913C6.86377 8.98742 6.10352 9.68953 6.10352 11.1173C6.10352 12.5452 7.16057 13.9258 7.30805 14.1231C7.45553 14.3205 9.35121 17.3407 12.3132 18.4666C14.7743 19.4022 15.2754 19.2167 15.8098 19.1678C16.3442 19.1188 17.5439 18.4659 17.7918 17.7761C18.0398 17.0864 18.0398 16.495 17.9661 16.3713C17.8923 16.2476 17.6943 16.1731 17.3973 16.0251C17.1004 15.8771 15.6399 15.1582 15.3678 15.0595C15.0958 14.9608 14.8978 14.9114 14.6998 15.2075C14.5018 15.5037 13.9395 16.1731 13.7666 16.3705C13.5937 16.5678 13.4209 16.5926 13.1239 16.4445C12.8269 16.2964 11.8694 15.9842 10.7341 14.9716C9.85154 14.1845 9.25613 13.2127 9.08327 12.9165C8.9104 12.6204 9.06484 12.4607 9.21387 12.3134C9.34773 12.1812 9.51083 11.968 9.65986 11.7954C9.80889 11.6227 9.85809 11.499 9.95708 11.3016C10.0561 11.1043 10.0066 10.9316 9.93289 10.7836C9.85915 10.6355 9.28186 9.19938 9.16368 8.83984Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-                <span class="social-copy">
-                  <strong>WhatsApp</strong>
-                  <span>Direct and efficient for quick outreach</span>
-                </span>
-              </span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="shell footer-row">
-      <span>© <span id="year"></span> Yoan Garcia</span>
-      <span>Built with a clean, minimal system and intentional detail.</span>
-    </div>
-  </footer>
-
-  <script>
-    const year = document.getElementById('year');
-    if (year) {
-      year.textContent = new Date().getFullYear();
-    }
-
-    const items = document.querySelectorAll('.reveal');
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (!reduceMotion && 'IntersectionObserver' in window) {
-      const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            obs.unobserve(entry.target);
-          }
-        });
-      }, {
-        threshold: 0.18,
-        rootMargin: '0px 0px -40px 0px'
-      });
-
-      items.forEach((item, index) => {
-        if (!item.classList.contains('is-visible')) {
-          item.style.transitionDelay = `${Math.min(index * 70, 280)}ms`;
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yoan Garcia — Software Engineer</title>
+    <meta name="description"
+        content="Portfolio of Yoan Garcia, a software engineer focused on solving real problems with thoughtful, scalable digital products." />
+    <style>
+        :root {
+            --bg: #0b0b0c;
+            --bg-soft: #111214;
+            --panel: rgba(255, 255, 255, 0.04);
+            --panel-strong: rgba(255, 255, 255, 0.07);
+            --text: #f5f5f2;
+            --muted: #a4a7ad;
+            --line: rgba(255, 255, 255, 0.1);
+            --accent: #9be7c4;
+            --accent-soft: rgba(155, 231, 196, 0.14);
+            --accent-2: #d9d4ff;
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+            --radius-xl: 32px;
+            --radius-lg: 24px;
+            --radius-md: 18px;
+            --container: 1180px;
+            --ease: 240ms cubic-bezier(.2, .8, .2, 1);
         }
-        observer.observe(item);
-      });
-    } else {
-      items.forEach((item) => item.classList.add('is-visible'));
-    }
-  </script>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background:
+                radial-gradient(circle at top left, rgba(155, 231, 196, 0.08), transparent 28%),
+                radial-gradient(circle at 85% 15%, rgba(217, 212, 255, 0.08), transparent 24%),
+                linear-gradient(180deg, #090909 0%, #0d0e10 100%);
+            color: var(--text);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        .shell {
+            width: min(calc(100% - 2rem), var(--container));
+            margin: 0 auto;
+        }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(14px);
+            background: rgba(11, 11, 12, 0.68);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.25rem;
+            min-height: 76px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .brand-mark {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 16px;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background:
+                linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
+                linear-gradient(145deg, rgba(155, 231, 196, 0.15), rgba(217, 212, 255, 0.08));
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            font-size: 0.9rem;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            font-size: 0.95rem;
+            padding: 0.8rem 1rem;
+            border-radius: 999px;
+            transition: color var(--ease), background var(--ease), transform var(--ease);
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus-visible {
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.05);
+            outline: none;
+            transform: translateY(-1px);
+        }
+
+        main {
+            overflow: clip;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        .hero {
+            padding: 5.5rem 0 3.5rem;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+            gap: 2rem;
+            align-items: end;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.65rem;
+            padding: 0.55rem 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 999px;
+            color: var(--muted);
+            background: rgba(255, 255, 255, 0.03);
+            font-size: 0.82rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 0.55rem;
+            height: 0.55rem;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 6px rgba(155, 231, 196, 0.12);
+        }
+
+        h1,
+        h2,
+        h3,
+        p {
+            margin-top: 0;
+        }
+
+        .hero h1 {
+            margin: 1.4rem 0 1rem;
+            font-size: clamp(3rem, 8vw, 6.4rem);
+            line-height: 0.95;
+            letter-spacing: -0.05em;
+            font-weight: 700;
+            max-width: 10ch;
+        }
+
+        .hero .lead {
+            max-width: 62ch;
+            font-size: clamp(1.05rem, 1.35vw, 1.22rem);
+            color: #d6d9df;
+            line-height: 1.75;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.9rem;
+            margin-top: 2rem;
+        }
+
+        .button,
+        .button-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.7rem;
+            min-height: 3.4rem;
+            padding: 0 1.2rem;
+            border-radius: 999px;
+            transition: transform var(--ease), background var(--ease), border-color var(--ease), color var(--ease);
+            border: 1px solid transparent;
+            white-space: nowrap;
+        }
+
+        .button {
+            background: var(--text);
+            color: #0d0e10;
+            font-weight: 600;
+        }
+
+        .button:hover,
+        .button:focus-visible {
+            transform: translateY(-2px);
+            outline: none;
+        }
+
+        .button-secondary {
+            border-color: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text);
+        }
+
+        .button-secondary:hover,
+        .button-secondary:focus-visible {
+            background: rgba(255, 255, 255, 0.07);
+            transform: translateY(-2px);
+            outline: none;
+        }
+
+        .hero-panel {
+            position: relative;
+            min-height: 100%;
+            padding: 1.6rem;
+            border-radius: var(--radius-xl);
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: var(--shadow);
+            isolation: isolate;
+        }
+
+        .hero-panel::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 18%, rgba(155, 231, 196, 0.15), transparent 30%),
+                radial-gradient(circle at 82% 80%, rgba(217, 212, 255, 0.12), transparent 28%);
+            border-radius: inherit;
+            z-index: -1;
+        }
+
+        .panel-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .panel-item {
+            padding: 1.1rem 1.15rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(8, 8, 9, 0.45);
+        }
+
+        .panel-label {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .panel-value {
+            font-size: 1.05rem;
+            line-height: 1.5;
+            color: #f0f1f4;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .stat {
+            padding: 1rem;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 1.5rem;
+            letter-spacing: -0.04em;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat span {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .section-heading {
+            display: grid;
+            gap: 0.8rem;
+            margin-bottom: 2.2rem;
+            max-width: 54rem;
+        }
+
+        .section-heading .kicker {
+            color: var(--accent);
+            font-size: 0.88rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(2rem, 3vw, 3.4rem);
+            line-height: 1;
+            letter-spacing: -0.04em;
+            margin-bottom: 0;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            font-size: 1.02rem;
+            max-width: 58ch;
+            line-height: 1.8;
+            margin-bottom: 0;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1rem;
+        }
+
+        .project {
+            position: relative;
+            overflow: hidden;
+            min-height: 320px;
+            border-radius: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+            transition: transform var(--ease), border-color var(--ease), background var(--ease);
+            isolation: isolate;
+        }
+
+        .project:hover,
+        .project:focus-within {
+            transform: translateY(-6px);
+            border-color: rgba(255, 255, 255, 0.16);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.025));
+        }
+
+        .project::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            opacity: 0.95;
+            z-index: -1;
+        }
+
+        .project--wide::before {
+            background:
+                radial-gradient(circle at 18% 18%, rgba(155, 231, 196, 0.16), transparent 22%),
+                linear-gradient(135deg, rgba(255, 255, 255, 0.04), transparent 55%),
+                repeating-linear-gradient(90deg, transparent 0 24px, rgba(255, 255, 255, 0.03) 24px 25px);
+        }
+
+        .project--tall::before {
+            background:
+                radial-gradient(circle at 78% 18%, rgba(217, 212, 255, 0.16), transparent 26%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 55%),
+                repeating-linear-gradient(180deg, transparent 0 22px, rgba(255, 255, 255, 0.028) 22px 23px);
+        }
+
+        .project--accent::before {
+            background:
+                linear-gradient(145deg, rgba(155, 231, 196, 0.12), transparent 32%),
+                radial-gradient(circle at 80% 85%, rgba(255, 255, 255, 0.08), transparent 26%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 60%);
+        }
+
+        .project--dark::before {
+            background:
+                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.06), transparent 35%),
+                linear-gradient(135deg, rgba(217, 212, 255, 0.11), transparent 35%),
+                linear-gradient(315deg, rgba(155, 231, 196, 0.08), transparent 28%);
+        }
+
+        .span-7 {
+            grid-column: span 7;
+        }
+
+        .span-5 {
+            grid-column: span 5;
+        }
+
+        .span-4 {
+            grid-column: span 4;
+        }
+
+        .span-8 {
+            grid-column: span 8;
+        }
+
+        .project-inner {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1.25rem;
+            padding: 1.4rem;
+        }
+
+        .project-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .project-tag {
+            display: inline-flex;
+            align-items: center;
+            min-height: 2rem;
+            padding: 0.35rem 0.7rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #eceef3;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .project-index {
+            color: rgba(255, 255, 255, 0.35);
+            font-size: 0.95rem;
+            letter-spacing: 0.08em;
+        }
+
+        .project h3 {
+            font-size: clamp(1.4rem, 2vw, 2rem);
+            line-height: 1.05;
+            letter-spacing: -0.035em;
+            margin-bottom: 0.8rem;
+            max-width: 13ch;
+        }
+
+        .project p {
+            color: #d2d6dd;
+            max-width: 50ch;
+            line-height: 1.75;
+            margin-bottom: 0;
+        }
+
+        /* Technology stack chips */
+        .stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .stack-item {
+            font-size: 0.78rem;
+            padding: 0.4rem 0.65rem;
+            border-radius: 999px;
+            background: rgba(155, 231, 196, 0.08);
+            border: 1px solid rgba(155, 231, 196, 0.18);
+            color: #e9fff6;
+            letter-spacing: 0.03em;
+        }
+
+        .stack-item.alt {
+            background: rgba(217, 212, 255, 0.08);
+            border-color: rgba(217, 212, 255, 0.18);
+            color: #f0edff;
+        }
+
+        /* Stack architecture grouping */
+
+        .stack-group {
+            margin-top: 1rem;
+        }
+
+        .stack-title {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #a4a7ad;
+            margin-bottom: 0.35rem;
+        }
+
+        .stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .stack-item {
+            font-size: 0.78rem;
+            padding: 0.38rem 0.65rem;
+            border-radius: 999px;
+            background: rgba(155, 231, 196, 0.08);
+            border: 1px solid rgba(155, 231, 196, 0.18);
+            color: #e9fff6;
+        }
+
+        .stack-item.alt {
+            background: rgba(217, 212, 255, 0.08);
+            border-color: rgba(217, 212, 255, 0.18);
+            color: #f0edff;
+        }
+
+        .project-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+            padding-top: 1.25rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .project-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .project-meta span {
+            padding: 0.45rem 0.7rem;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            color: var(--muted);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .project-link svg,
+        .social-link svg {
+            transition: transform var(--ease);
+        }
+
+        .project:hover .project-link svg,
+        .social-link:hover svg {
+            transform: translate(3px, -3px);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+            gap: 1rem;
+        }
+
+        .about-card,
+        .contact-card {
+            padding: 1.6rem;
+            border-radius: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.025));
+            box-shadow: var(--shadow);
+        }
+
+        .about-card p {
+            color: #d3d7de;
+            line-height: 1.9;
+            font-size: 1.02rem;
+        }
+
+        .about-points {
+            display: grid;
+            gap: 0.9rem;
+        }
+
+        .about-point {
+            padding: 1rem 1.05rem;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .about-point strong {
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .about-point span {
+            color: var(--muted);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .contact-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: "";
+            position: absolute;
+            inset: auto -4rem -4rem auto;
+            width: 14rem;
+            height: 14rem;
+            background: radial-gradient(circle, rgba(155, 231, 196, 0.16), transparent 60%);
+            pointer-events: none;
+        }
+
+        .socials {
+            display: grid;
+            gap: 0.9rem;
+            margin-top: 1.6rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1rem 1.1rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.03);
+            transition: transform var(--ease), background var(--ease), border-color var(--ease);
+        }
+
+        .social-link:hover,
+        .social-link:focus-visible {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.055);
+            border-color: rgba(255, 255, 255, 0.15);
+            outline: none;
+        }
+
+        .social-main {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+        }
+
+        .social-icon {
+            width: 2.75rem;
+            height: 2.75rem;
+            border-radius: 16px;
+            display: grid;
+            place-items: center;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text);
+            flex-shrink: 0;
+        }
+
+        .social-copy strong {
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .social-copy span {
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .site-footer {
+            padding: 2rem 0 3.2rem;
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .footer-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            flex-wrap: wrap;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 700ms ease, transform 700ms ease;
+            will-change: transform, opacity;
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        @media (max-width: 1024px) {
+
+            .hero-grid,
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .span-7,
+            .span-5,
+            .span-4,
+            .span-8 {
+                grid-column: span 12;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .nav {
+                min-height: auto;
+                padding: 0.95rem 0;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                width: 100%;
+            }
+
+            .nav-links a {
+                padding-inline: 0.8rem;
+            }
+
+            .hero {
+                padding-top: 3.8rem;
+            }
+
+            section {
+                padding: 4rem 0;
+            }
+
+            .hero h1 {
+                max-width: none;
+            }
+
+            .hero-actions,
+            .project-footer,
+            .footer-row {
+                align-items: stretch;
+            }
+
+            .button,
+            .button-secondary {
+                width: 100%;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .project {
+                min-height: 280px;
+            }
+
+            .project h3 {
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="shell nav">
+            <a href="#top" class="brand" aria-label="Yoan Garcia home">
+                <span class="brand-mark">YG</span>
+                <span>Yoan Garcia</span>
+            </a>
+
+            <nav class="nav-links" aria-label="Primary navigation">
+                <a href="#projects">Projects</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="top">
+        <section class="hero">
+            <div class="shell hero-grid">
+                <div class="reveal is-visible">
+                    <span class="eyebrow">Experienced software engineer</span>
+                    <h1>Yoan Garcia</h1>
+                    <p class="lead">
+                        I design and build software that solves real business problems with clarity, structure,
+                        and long-term thinking. I am not defined by a single language or framework — I focus on
+                        understanding the problem deeply, then delivering the right solution with precision.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a class="button" href="#projects">View selected work</a>
+                        <a class="button-secondary" href="#contact">Connect with me</a>
+                    </div>
+                </div>
+
+                <aside class="hero-panel reveal" aria-label="Professional summary">
+                    <div class="panel-grid">
+                        <div class="panel-item">
+                            <div class="panel-label">Approach</div>
+                            <div class="panel-value">Systems thinking, product awareness, and practical engineering that
+                                moves work forward.</div>
+                        </div>
+
+                        <div class="panel-item">
+                            <div class="panel-label">Strength</div>
+                            <div class="panel-value">Turning ambiguity into clean architecture, reliable delivery, and
+                                polished user experiences.</div>
+                        </div>
+                    </div>
+
+                    <div class="stats" aria-label="Key highlights">
+                        <div class="stat">
+                            <strong>End-to-end</strong>
+                            <span>From concept to production</span>
+                        </div>
+                        <div class="stat">
+                            <strong>Problem-first</strong>
+                            <span>Solutions over labels</span>
+                        </div>
+                        <div class="stat">
+                            <strong>Minimal</strong>
+                            <span>Clean and intentional design</span>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="shell">
+                <div class="section-heading reveal">
+                    <span class="kicker">Selected projects</span>
+                    <h2>Work shaped by outcomes, not just implementation.</h2>
+                    <p>
+                        Each project below is framed around a different kind of challenge: workflow design,
+                        user experience, operational clarity, and scalable systems thinking.
+                    </p>
+                </div>
+
+                <div class="projects-grid">
+                    <article class="project project--wide span-7 reveal">
+                        <div class="project-inner">
+                            <div>
+                                <div class="project-top">
+                                    <span class="project-tag">Platform design</span>
+                                    <span class="project-index">01</span>
+                                </div>
+                                <h3>Appointment platform built for real-world operations</h3>
+                                <p>
+                                    A business-focused booking experience designed to reduce friction for customers
+                                    while giving owners better control over services, availability, and day-to-day
+                                    management.
+                                </p>
+                                <div class="stack-group">
+
+                                    <div class="stack-title">Frontend</div>
+                                    <div class="stack">
+                                        <span class="stack-item alt">Angular</span>
+                                    </div>
+
+                                    <div class="stack-title">Backend</div>
+                                    <div class="stack">
+                                        <span class="stack-item">.NET Core API</span>
+                                        <span class="stack-item alt">PostgreSQL</span>
+                                    </div>
+
+                                    <div class="stack-title">Infrastructure</div>
+                                    <div class="stack">
+                                        <span class="stack-item">Linux VPS</span>
+                                        <span class="stack-item alt">Azure DevOps CI/CD</span>
+                                    </div>
+
+                                    <div class="stack-title">Services</div>
+                                    <div class="stack">
+                                        <span class="stack-item">Twilio RCS / SMS</span>
+                                    </div>
+
+                                </div>
+                                <p>Architecture: API-first platform with CI/CD and automated deployments</p>
+                            </div>
+                            <div class="project-footer">
+                                <div class="project-meta" aria-label="Project qualities">
+                                    <span>Operational UX</span>
+                                    <span>RCS-SMS notifications</span>
+                                    <span>Business workflow</span>
+                                </div>
+                                <a href="https://berryeze.com/landing" target="_blank" class="project-link">
+                                    See it live
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                        <path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="1.8"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project project--tall span-5 reveal">
+                        <div class="project-inner">
+                            <div>
+                                <div class="project-top">
+                                    <span class="project-tag">Frontend refinement</span>
+                                    <span class="project-index">02</span>
+                                </div>
+                                <h3>Veteran-owned HVAC website built for trust and conversion</h3>
+                                <p>
+                                    A service website for a veteran-owned HVAC company designed to turn urgent home
+                                    comfort issues into clear, quick next steps with strong credibility and simple
+                                    service booking.
+                                </p>
+                                <div class="stack-group">
+
+                                    <div class="stack-title">Frontend</div>
+                                    <div class="stack">
+                                        <span class="stack-item alt">Vue.js</span>
+                                        <span class="stack-item">Vite</span>
+                                    </div>
+
+                                    <div class="stack-title">Backend</div>
+                                    <div class="stack">
+                                        <span class="stack-item">.NET Core API</span>
+                                        <span class="stack-item alt">ASP.NET Identity</span>
+                                    </div>
+
+                                    <div class="stack-title">Infrastructure</div>
+                                    <div class="stack">
+                                        <span class="stack-item">Netlify</span>
+                                        <span class="stack-item alt">Azure App Service</span>
+                                        <span class="stack-item">Azure SQL Database</span>
+                                    </div>
+
+                                    <div class="stack-title">Services</div>
+                                    <div class="stack">
+                                        <span class="stack-item">Mailgun</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="project-footer">
+                                <div class="project-meta">
+                                    <span>Responsive UI</span>
+                                    <span>Micro-interactions</span>
+                                    <span>Azure</span>
+                                </div>
+                                <a href="#contact" class="project-link">
+                                    See it live
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                        <path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="1.8"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project project--accent span-4 reveal">
+                        <div class="project-inner">
+                            <div>
+                                <div class="project-top">
+                                    <span class="project-tag">Integration</span>
+                                    <span class="project-index">03</span>
+                                </div>
+                                <h3>Communication flows connected to product logic</h3>
+                                <p>
+                                    Messaging, notifications, and external services integrated in a way that supports
+                                    the user journey instead of feeling bolted on afterward.
+                                </p>
+                            </div>
+                            <div class="project-footer">
+                                <div class="project-meta">
+                                    <span>External services</span>
+                                    <span>Reliable flows</span>
+                                </div>
+                                <a href="#contact" class="project-link">
+                                    Explore the details
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                        <path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="1.8"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project project--dark span-8 reveal">
+                        <div class="project-inner">
+                            <div>
+                                <div class="project-top">
+                                    <span class="project-tag">Architecture</span>
+                                    <span class="project-index">04</span>
+                                </div>
+                                <h3>Backend structure designed for maintainability and growth</h3>
+                                <p>
+                                    Clear service boundaries, secure access patterns, and data models designed to stay
+                                    understandable as the product evolves and requirements become more complex.
+                                </p>
+                            </div>
+                            <div class="project-footer">
+                                <div class="project-meta">
+                                    <span>Clean boundaries</span>
+                                    <span>Secure by design</span>
+                                    <span>Future-ready</span>
+                                </div>
+                                <a href="#contact" class="project-link">
+                                    Talk through your project
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                        <path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="1.8"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="shell">
+                <div class="section-heading reveal">
+                    <span class="kicker">About</span>
+                    <h2>Engineering with perspective, not just execution.</h2>
+                </div>
+
+                <div class="about-grid">
+                    <article class="about-card reveal">
+                        <p>
+                            I approach software engineering as a discipline of solving problems well. That means
+                            understanding business goals, noticing friction points, designing systems that make sense,
+                            and delivering work that feels intentional from the inside out.
+                        </p>
+                        <p>
+                            I do not define my work by a fixed stack. Different problems call for different tools,
+                            and good engineering is often about choosing wisely, simplifying aggressively, and building
+                            with enough structure that the solution remains useful long after launch.
+                        </p>
+                        <p>
+                            My preference is for products that feel clear, reliable, and quietly sophisticated — the
+                            kind of software that earns trust because it works the way people need it to.
+                        </p>
+                    </article>
+
+                    <aside class="about-points reveal" aria-label="Working style highlights">
+                        <div class="about-point">
+                            <strong>Problem framing</strong>
+                            <span>I like to find the real issue underneath the visible one before touching
+                                implementation.</span>
+                        </div>
+                        <div class="about-point">
+                            <strong>Structured delivery</strong>
+                            <span>Thoughtful systems, maintainable code, and interfaces that support the product instead
+                                of distracting from it.</span>
+                        </div>
+                        <div class="about-point">
+                            <strong>Professional polish</strong>
+                            <span>The final details matter — naming, flow, responsiveness, consistency, and the overall
+                                feel of the product.</span>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="shell">
+                <div class="section-heading reveal">
+                    <span class="kicker">Contact</span>
+                    <h2>Let’s connect where conversation is simplest.</h2>
+                    <p>
+                        No contact form. Just direct channels.
+                    </p>
+                </div>
+
+                <div class="contact-card reveal">
+                    <div class="socials">
+                        <a class="social-link" href="https://www.linkedin.com/in/yohanjs" target="_blank"
+                            rel="noreferrer noopener" aria-label="LinkedIn">
+                            <span class="social-main">
+                                <span class="social-icon" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                        <path
+                                            d="M7 9V17M7 7V7.01M11 17V12.5C11 10.567 12.567 9 14.5 9C16.433 9 18 10.567 18 12.5V17M3 5.5C3 4.11929 4.11929 3 5.5 3H18.5C19.8807 3 21 4.11929 21 5.5V18.5C21 19.8807 19.8807 21 18.5 21H5.5C4.11929 21 3 19.8807 3 18.5V5.5Z"
+                                            stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                                <span class="social-copy">
+                                    <strong>LinkedIn</strong>
+                                    <span>Professional network and conversations</span>
+                                </span>
+                            </span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="1.8"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+
+                        <a class="social-link" href="https://github.com/yohanJS/yohanJS" target="_blank"
+                            rel="noreferrer noopener" aria-label="GitHub">
+                            <span class="social-main">
+                                <span class="social-icon" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                        <path
+                                            d="M9 18C4 19.5 4 15.5 2 15M16 21V17.13C16.0375 16.6532 15.9731 16.1738 15.811 15.723C15.6489 15.2722 15.3929 14.8602 15.06 14.514C18.2 14.164 21.5 12.974 21.5 7.514C21.4997 6.11728 20.9627 4.77406 20 3.764C20.4559 2.54297 20.4236 1.19374 19.91 0C19.91 0 18.73 -0.35 16 1.474C13.708 0.853846 11.292 0.853846 9 1.474C6.27 -0.35 5.09 0 5.09 0C4.57638 1.19374 4.54414 2.54297 5 3.764C4.03013 4.78155 3.49252 6.13748 3.5 7.544C3.5 12.964 6.8 14.154 9.94 14.544C9.611 14.8864 9.35726 15.2928 9.19425 15.7386C9.03124 16.1844 8.96257 16.6594 8.992 17.133V21"
+                                            stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                                <span class="social-copy">
+                                    <strong>GitHub</strong>
+                                    <span>Code, experiments, and implementation detail</span>
+                                </span>
+                            </span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="1.8"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+
+                        <a class="social-link" href="https://wa.me/17863433134" target="_blank"
+                            rel="noreferrer noopener" aria-label="WhatsApp">
+                            <span class="social-main">
+                                <span class="social-icon" aria-hidden="true">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                        <path
+                                            d="M20 11.5C20 16.1944 16.1944 20 11.5 20C10.0493 20 8.68343 19.6363 7.48987 18.9955L3.5 20L4.56602 16.1847C3.88256 14.9597 3.5 13.5477 3.5 12.0469C3.5 7.35248 7.30558 3.54691 12 3.54691C16.6944 3.54691 20.5 7.35248 20.5 12.0469"
+                                            stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path
+                                            d="M9.16368 8.83984C8.94146 8.34572 8.70776 8.33583 8.4963 8.32718C8.32344 8.32012 8.12545 8.32067 7.92747 8.32067C7.72949 8.32067 7.40791 8.39519 7.13584 8.6913C6.86377 8.98742 6.10352 9.68953 6.10352 11.1173C6.10352 12.5452 7.16057 13.9258 7.30805 14.1231C7.45553 14.3205 9.35121 17.3407 12.3132 18.4666C14.7743 19.4022 15.2754 19.2167 15.8098 19.1678C16.3442 19.1188 17.5439 18.4659 17.7918 17.7761C18.0398 17.0864 18.0398 16.495 17.9661 16.3713C17.8923 16.2476 17.6943 16.1731 17.3973 16.0251C17.1004 15.8771 15.6399 15.1582 15.3678 15.0595C15.0958 14.9608 14.8978 14.9114 14.6998 15.2075C14.5018 15.5037 13.9395 16.1731 13.7666 16.3705C13.5937 16.5678 13.4209 16.5926 13.1239 16.4445C12.8269 16.2964 11.8694 15.9842 10.7341 14.9716C9.85154 14.1845 9.25613 13.2127 9.08327 12.9165C8.9104 12.6204 9.06484 12.4607 9.21387 12.3134C9.34773 12.1812 9.51083 11.968 9.65986 11.7954C9.80889 11.6227 9.85809 11.499 9.95708 11.3016C10.0561 11.1043 10.0066 10.9316 9.93289 10.7836C9.85915 10.6355 9.28186 9.19938 9.16368 8.83984Z"
+                                            stroke="currentColor" stroke-width="1.2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                                <span class="social-copy">
+                                    <strong>WhatsApp</strong>
+                                    <span>Direct and efficient for quick outreach</span>
+                                </span>
+                            </span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="1.8"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="shell footer-row">
+            <span>© <span id="year"></span> Yoan Garcia</span>
+            <span>Built with a clean, minimal system and intentional detail.</span>
+        </div>
+    </footer>
+
+    <script>
+        const year = document.getElementById('year');
+        if (year) {
+            year.textContent = new Date().getFullYear();
+        }
+
+        const items = document.querySelectorAll('.reveal');
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (!reduceMotion && 'IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.18,
+                rootMargin: '0px 0px -40px 0px'
+            });
+
+            items.forEach((item, index) => {
+                if (!item.classList.contains('is-visible')) {
+                    item.style.transitionDelay = `${Math.min(index * 70, 280)}ms`;
+                }
+                observer.observe(item);
+            });
+        } else {
+            items.forEach((item) => item.classList.add('is-visible'));
+        }
+    </script>
 </body>
+
 </html>
